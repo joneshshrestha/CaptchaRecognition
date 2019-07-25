@@ -41,7 +41,7 @@ for image_file in captcha_image_files:
     contours = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # Hack for compatibility with different OpenCV versions
-    contours = contours[0] if imutils.is_cv2() else contours[1]
+    contours = contours[1] if imutils.is_cv3() else contours[0]
 
     letter_image_regions = []
 
@@ -77,7 +77,7 @@ for image_file in captcha_image_files:
     output = cv2.merge([image] * 3)
     predictions = []
 
-    # loop over the lektters
+    # loop over the letters
     for letter_bounding_box in letter_image_regions:
         # Grab the coordinates of the letter in the image
         x, y, w, h = letter_bounding_box

@@ -4,11 +4,13 @@ import cv2
 import glob
 import imutils
 
+
 CAPTCHA_IMAGE_FOLDER = "generated_captcha_images"
 OUTPUT_FOLDER = "extracted_letter_images"
 
+
 # Get a list of all the captcha images we need to process
-captcha_image_files = glob.glob(os.path.join(CAPTCHA_IMAGE_FOLDER, "*")) # Example: generated_captcha_images/2A2X.png
+captcha_image_files = glob.glob(os.path.join(CAPTCHA_IMAGE_FOLDER, "*"))
 counts = {}
 
 # loop over the image paths
@@ -34,7 +36,8 @@ for (i, captcha_image_file) in enumerate(captcha_image_files):
     contours = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # Hack for compatibility with different OpenCV versions
-    contours = contours[0] if imutils.is_cv2() else contours[1]
+    # contours = contours[0] if imutils.is_cv2() else contours[1]
+    contours = contours[1] if imutils.is_cv3() else contours[0]
 
     letter_image_regions = []
 
@@ -55,7 +58,7 @@ for (i, captcha_image_file) in enumerate(captcha_image_files):
         else:
             # This is a normal letter by itself
             letter_image_regions.append((x, y, w, h))
-            
+
     # If we found more or less than 4 letters in the captcha, our letter extraction
     # didn't work correcly. Skip the image instead of saving bad training data!
     if len(letter_image_regions) != 4:

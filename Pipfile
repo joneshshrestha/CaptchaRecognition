@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+numpy = "*"
+imutils = "*"
+sklearn = "*"
+tensorflow = "*"
+Keras = "*"
+autopep8 = "*"
+
+[packages]
+imutils = "*"
+
+[requires]
+python_version = "3.6"
