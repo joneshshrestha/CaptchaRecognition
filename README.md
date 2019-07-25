@@ -1,6 +1,4 @@
-### Before you get started
-
-To run these scripts, you need the following installed:
+### To run these scripts, you need the following installed:
 
 1. Python 3
 2. OpenCV 3 w/ Python extensions
@@ -11,18 +9,10 @@ To run these scripts, you need the following installed:
 
 ### Step 1: Extract single letters from CAPTCHA images
 
-Run:
-
-python3 extract_single_letters_from_captchas.py
-
-The results will be stored in the "extracted_letter_images" folder.
+The results is stored in the "extracted_letter_images" folder.
 
 
 ### Step 2: Train the neural network to recognize single letters
-
-Run:
-
-python3 train_model.py
 
 This will write out "captcha_model.hdf5" and "model_labels.dat"
 
